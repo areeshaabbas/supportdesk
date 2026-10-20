@@ -13,9 +13,9 @@ Verified on 20 October 2026.
 | Inbox UI | Passed in design preview | Reply submission, status filtering, customer search and selection behavior checked through the browser. |
 | Team and widget UI | Passed in design preview | Team screen, installation instructions, customer conversation form and sent-message feedback checked. |
 | Responsive layout | Passed | Desktop at 1440 × 900; mobile at 390 × 844, with document width 385 and no horizontal overflow. Message scrolling no longer moves the outer page. |
-| MongoDB/Redis persistence | Not verified here | Docker engine was unavailable. Docker Desktop could not start because its required installation registry key was missing. |
-| Worker/SMTP delivery | Not verified here | Needs the Compose services. Policy tests passed; actual mail delivery needs the local walkthrough. |
-| Docker image | Not built here | Requires a working Docker engine. CI includes a Docker build check. |
-| Hosting | Not deployed | Deployment configuration and instructions are included. |
+| MongoDB/Redis persistence | Passed on hosted demo | Atlas seeded successfully; API and worker started with managed Redis. A customer conversation and both message directions survived a browser reload. Queue delivery was not verified. |
+| Worker/SMTP delivery | Not configured on hosted demo | Worker starts with Redis. Policy tests passed; SMTP credentials are not configured, so email delivery is not verified. |
+| Docker image | Passed in GitHub Actions | Container build passed in the public repository CI. |
+| Hosting | Live | https://supportdesk-api-wau7.onrender.com/ — Render reports live; password-free agent demo login, customer session creation, messages in both directions without refresh, read acknowledgement, assignment, resolution, and history reload verified in the browser. |
 
 The preview is explicitly labeled and uses memory-only sample data. It is not evidence of a successful production database connection. See README for the local live-workspace walkthrough, deployment steps and documented reliability limits.
