@@ -1,5 +1,7 @@
 # SupportDesk
 
+**[Open the live demo](https://supportdesk-api-wau7.onrender.com/)** — choose **Sign in to live workspace → Explore the live demo**. Open [/widget](https://supportdesk-api-wau7.onrender.com/widget) in another tab to try both sides of a real conversation. Free hosting may take about a minute to wake after inactivity. Use fictional details; this is a shared demo. Email reminders need an SMTP provider and are not configured on this deployment.
+
 A shared inbox and embeddable customer chat, built with React, TypeScript, Express, Socket.IO, MongoDB and BullMQ. The visual direction is quiet and editorial: warm neutrals, forest green, serif headings and a compact three-column inbox.
 
 ## Start here
@@ -93,4 +95,4 @@ The frontend can be built as a Vite static site on Vercel. Set `VITE_API_URL` to
 
 Deploy the API and worker as separate persistent processes from the included Dockerfile, using `npm start` and `npm run worker`. Supply managed MongoDB and Redis URLs, a strong JWT secret, production SMTP settings and `WEB_ORIGIN` equal to the frontend HTTPS origin. Configure the API host for WebSocket upgrades. Keep MongoDB and Redis private; Compose host ports are loopback-only for local development. If using a reverse proxy, configure Express proxy trust for that specific infrastructure before relying on per-client rate limits.
 
-No deployment has been created automatically, and the repository contains no production credentials.
+The public demo runs on Render with MongoDB Atlas and Redis. The repository contains no production credentials.
