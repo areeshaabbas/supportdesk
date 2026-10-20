@@ -1,0 +1,53 @@
+# Free web service with the frontend, live API and worker at one origin.
+# The background worker shares this service and sleeps when the free service sleeps.
+services:
+  - type: web
+    name: supportdesk-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run seed && npm run start:hosted
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.18.0
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SEED_ADMIN_PASSWORD
+        generateValue: true
+      - key: SEED_ADMIN_EMAIL
+        value: owner@supportdesk.local
+      - key: DEMO_LOGIN_ENABLED
+        value: "true"
+      - key: VITE_PUBLIC_DEMO
+        value: "true"
+      - key: SERVE_FRONTEND
+        value: "true"
+      - key: MONGODB_URI
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: supportdesk-queue
+          property: connectionString
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "2525"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: TEAM_EMAIL
+        sync: false
+  - type: keyvalue
+    name: supportdesk-queue
+    plan: free
+    ipAllowList: []
+    maxmemoryPolicy: noeviction
