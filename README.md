@@ -78,8 +78,8 @@ compose.yml          API, worker, MongoDB, Redis and development mail
 ## Validation
 
 ```powershell
-npm test
 npm run build
+npm test
 docker build -t supportdesk:local .
 ```
 
